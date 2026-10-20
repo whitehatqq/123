@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+
+        <!--
+            АДРЕС САЙТА VPNON — меняется только эта строка.
+            Заблокируют адрес — впишите между кавычками другой адрес VPNON и сохраните файл.
+            Ссылки в видео и постах менять не нужно.
+        -->
+        <script>
+            const site = 'https://vpnon.io'
+        </script>
+
+        <!-- Дальше ничего менять не нужно -->
+        <meta name="robots" content="noindex">
+        <title>VPNON</title>
+
+        <script>
+            // Какие параметры передаём дальше
+            const pass = ['ref', 'promo', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'yclid', 'gclid']
+
+            // Страница сайта из ?page=, без неё — главная
+            const params = new URLSearchParams(location.search)
+            const page = params.get('page') || '/'
+            const target = new URL(site + (page.startsWith('/') ? page : '/'))
+
+            for (const key of pass) {
+                if (params.has(key)) target.searchParams.set(key, params.get(key))
+            }
+
+            location.replace(target)
+        </script>
+    </head>
+
+    <body>
+        <p>Открываем VPNON…</p>
+    </body>
+</html>
